@@ -63,10 +63,9 @@ if result:
     st.subheader("平置き画像")
     cols = st.columns(min(4, len(result["flat_lay_images"])) or 1)
     for i, image_meta in enumerate(result["flat_lay_images"]):
-        image_path = f"{result['output_dir']}/images/{image_meta['file_name']}"
+        image_url = f"{API_BASE_URL}/products/{result['product_id']}/images/{image_meta['file_name']}"
         with cols[i % len(cols)]:
-            if os.path.exists(image_path):
-                st.image(image_path, caption=image_meta["file_name"], use_container_width=True)
+            st.image(image_url, caption=image_meta["file_name"], use_container_width=True)
 
     st.subheader("採寸データ")
     if result.get("measurements"):

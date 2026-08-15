@@ -218,7 +218,10 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Sasage AI runtime data (uploaded videos / generated products)
+# READMEの起動手順では `cd backend && uvicorn ...` を使うため、SASAGE_DATA_DIR未設定時は
+# backend/data/ 配下にも生成される（相対パスがバックエンドプロセスのcwd基準のため）
 data/uploads/*
 data/outputs/*
 !data/uploads/.gitkeep
 !data/outputs/.gitkeep
+backend/data/

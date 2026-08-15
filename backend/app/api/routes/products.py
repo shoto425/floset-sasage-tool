@@ -69,3 +69,17 @@ async def download_zip(product_id: str) -> FileResponse:
         media_type="application/zip",
         filename=f"{product_id}.zip",
     )
+
+
+@router.get("/{product_id}/images/{file_name}")
+async def download_image(product_id: str, file_name: str) -> FileResponse:
+    result = _results.get(product_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="指定された product_id が見つかりません")
+    if not any(img.file_name == file_name for img in result.flat_lay_images):
+        raise HTTPException(status_code=404, detail="指定された画像が見つかりません")
+
+    image_path = file_store.images_dir(product_id) / file_name
+    if not image_path.is_file():
+        raise HTTPException(status_code=404, detail="指定された画像が見つかりません")
+    return FileResponse(image_path, media_type="image/jpeg")
