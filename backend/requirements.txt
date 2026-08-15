@@ -1,0 +1,16 @@
+fastapi>=0.111
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pydantic-settings>=2.3
+python-multipart>=0.0.9
+opencv-python-headless>=4.10
+numpy>=1.26
+Pillow>=10.3
+rembg>=2.0.57
+imagehash>=4.3
+anthropic>=0.34
+python-dotenv>=1.0
+
+# Phase 2 candidates (not required for MVP, listed for planning):
+# mediapipe
+# segment-anything
